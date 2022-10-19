@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+import 'react-toastify/dist/ReactToastify.css';
+import {Route, Routes} from "react-router-dom";
+import MainPage from "./Components/MainPage";
+import Service from "./Components/Service";
+import Quiz from "./Components/Quiz";
+import {QuizData, QuizType} from "./types";
+import {getQuiz, getRandomSequence, makeId} from "./utils";
+import {irregular} from "./data";
+import ResultPage from "./Components/ResultPage";
+import VerbsTable from "./Components/VerbsTable";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const oldQuiz = getQuiz()
+    const data = (oldQuiz) ? oldQuiz : {}
+    const [quiz, setQuiz] = useState<QuizData>(data)
+
+    const updateQuiz = (key: keyof QuizData, value: any) => {
+        const updQuiz = quiz
+        updQuiz[key] = value
+        localStorage.setItem('data', JSON.stringify(updQuiz))
+        setQuiz((prevState) => ({...prevState, [key]: value}))
+    }
+
+    const createNewQuiz = (type: QuizType, count: number) => {
+        const newQuiz: QuizData = {
+            id: makeId(),
+            type: type,
+            count: count,
+            questions: getRandomSequence(irregular, count),
+            correctCount: 0,
+            failCount: 0,
+            active: 1,
+            answers: []
+        }
+        setQuiz(newQuiz)
+        localStorage.setItem('data', JSON.stringify(newQuiz))
+    }
+
+    return (
+        <Routes>
+            <Route path="/" element={<Service/>}>
+                <Route path="/" element={<MainPage createNewQuiz={createNewQuiz}/>}/>
+                <Route path="/quiz" element={<Quiz quiz={quiz} updateQuiz={updateQuiz}/>}/>
+                <Route path="/result" element={<ResultPage/>}/>
+                <Route path="/table" element={<VerbsTable/>}/>
+            </Route>
+        </Routes>
+    );
 }
 
 export default App;
