@@ -16,9 +16,6 @@ const ResultPage = () => {
             navigate('/quiz')
         }
 
-        console.log(quiz)
-
-
     }, [])
 
 

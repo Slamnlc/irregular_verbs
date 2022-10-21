@@ -18,7 +18,11 @@ const Quiz: FC<QuizProps> = ({quiz, updateQuiz}) => {
             Specify by comma
         </small>
         : <></>
-    const translation = quiz?.translation ? `(${quiz.questions![activeKey].translation[0]})` : ''
+    const translation = quiz?.translation
+        ? activeKey !== undefined
+            ? `(${quiz.questions![activeKey].translation[0]})`
+            : ''
+        : ''
 
     useEffect(() => {
         if (Object.keys(quiz!).length === 0) {
