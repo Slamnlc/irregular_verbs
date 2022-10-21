@@ -1,6 +1,8 @@
 import React, {createRef, useEffect, useState} from 'react';
 import {Table} from "react-bootstrap";
 import {irregular} from "../data";
+import {scrollTo} from "../utils";
+import {difficultLevels} from "../types";
 
 const VerbsTable = () => {
     const table = createRef<HTMLTableElement>();
@@ -14,9 +16,7 @@ const VerbsTable = () => {
     }
 
     const scrollTop = () => {
-        document.getElementById('root')!.scrollIntoView({
-            behavior: "smooth"
-        })
+        scrollTo('#root')
     }
 
     useEffect(() => {
@@ -38,6 +38,7 @@ const VerbsTable = () => {
                     <th>Infinitive</th>
                     <th>Past Simple</th>
                     <th>Past Participle</th>
+                    <th>Level</th>
                     <th>Переклад</th>
                 </tr>
                 </thead>
@@ -49,6 +50,7 @@ const VerbsTable = () => {
                             <td>{key}</td>
                             <td>{value.second.join(', ')}</td>
                             <td>{value.third.join(', ')}</td>
+                            <td>{difficultLevels[value.level]}</td>
                             <td>{value.translation.join(', ')}</td>
                         </tr>
                     })

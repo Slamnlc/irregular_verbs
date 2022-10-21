@@ -12,14 +12,19 @@ export function makeId(length: number = 10) {
     return result;
 }
 
-export function getRandomSequence(obj: object, count: number) {
+export function getRandomSequence(obj: object, count: number, maxDifficult: number) {
     const arr = {};
     const keys = Object.keys(obj);
     while (Object.keys(arr).length < count) {
         const keyIndex = Math.floor(Math.random() * keys.length) + 1;
+        // @ts-ignore
         if (Object.keys(arr).indexOf(keys[keyIndex]) === -1) {
             // @ts-ignore
-            arr[keys[keyIndex]] = obj[keys[keyIndex]]
+            if (obj[keys[keyIndex]].level <= maxDifficult) {
+                // @ts-ignore
+                arr[keys[keyIndex]] = obj[keys[keyIndex]]
+            }
+
         }
     }
     return arr
@@ -46,7 +51,12 @@ export function verifyAnswer(answer: string | string[], question: keyof typeof i
             // @ts-ignore
             return correct.includes(answer.toString())
         case "all":
-            return correct[0].includes(answer[0]) && correct[1].includes(answer[1])
+            const result = answer.toString().toLowerCase().split(',')
+            if (result.length !== 2) {
+                return false
+            }
+            return correct[0].includes(result[0].replaceAll(' ', '')) &&
+                correct[1].includes(result[1].replaceAll(' ', ''))
         case "third-first":
         case "second-first":
             return answer === correct
@@ -57,13 +67,11 @@ export function getCorrectAnswer(question: keyof typeof irregular, type: QuizTyp
     const key = irregular[question];
     switch (type) {
         case "first-second":
-            return key.second
-        case "first-third":
-            return key.third
-        case "second-third":
-            return key.third
         case "third-second":
             return key.second
+        case "first-third":
+        case "second-third":
+            return key.third
         case "translation":
             return prepareAnswer(key.translation)
         case "all":
@@ -72,8 +80,28 @@ export function getCorrectAnswer(question: keyof typeof irregular, type: QuizTyp
         case "second-first":
             return question.toString()
     }
-
 }
+
+export function convertCorrectToString(correct: string[] | string | string[][], type: QuizType): string {
+    switch (type) {
+        case "first-second":
+        case "first-third":
+        case "second-third":
+        case "third-second":
+            // @ts-ignore
+            return correct.join(', ')
+        case "third-first":
+        case "second-first":
+            return correct.toString()
+        case "all":
+            // @ts-ignore
+            return `${correct[0].join(', ')}, ${correct[0].join(',')}`
+        case "translation":
+            // @ts-ignore
+            return prepareAnswer(correct)
+    }
+}
+
 
 export function prepareAnswer(answer: string[]): string[] {
     return answer.map(el => el.replace(/(\s*\(.*\))/, ''))
@@ -84,6 +112,7 @@ export function getQuestion(key: keyof typeof irregular, type: QuizType) {
         case "translation":
         case "first-third":
         case "first-second":
+        case "all":
             return key
         case "second-first":
         case "second-third":
@@ -91,8 +120,6 @@ export function getQuestion(key: keyof typeof irregular, type: QuizType) {
         case "third-first":
         case "third-second":
             return irregular[key].third
-        case "all":
-            return [irregular[key].second, irregular[key].third]
     }
 }
 
@@ -117,4 +144,19 @@ export function splitArray(arr: any[], chunkSize: number) {
 
 export function isMobile(): boolean {
     return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+}
+
+
+export function openInNewTab(url: string) {
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+export function scrollTo(querySelector: string) {
+    document.querySelector(querySelector)!.scrollIntoView({
+        behavior: "smooth"
+    })
+}
+
+export function genDictionaryUrl(text: string): string {
+    return `https://www.oxfordlearnersdictionaries.com/definition/english/${text}_1?q=${text}`
 }

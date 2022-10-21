@@ -8,7 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import MainPage from "./Components/MainPage";
 import Service from "./Components/Service";
 import Quiz from "./Components/Quiz";
-import {QuizData, QuizType} from "./types";
+import {DifficultLevels, QuizData, QuizType} from "./types";
 import {getQuiz, getRandomSequence, makeId} from "./utils";
 import {irregular} from "./data";
 import ResultPage from "./Components/ResultPage";
@@ -27,16 +27,17 @@ function App() {
         setQuiz((prevState) => ({...prevState, [key]: value}))
     }
 
-    const createNewQuiz = (type: QuizType, count: number) => {
+    const createNewQuiz = (type: QuizType, count: number,
+                           addTranslation: boolean, difficultLevel: DifficultLevels) => {
         const newQuiz: QuizData = {
             id: makeId(),
             type: type,
             count: count,
-            questions: getRandomSequence(irregular, count),
-            correctCount: 0,
-            failCount: 0,
+            questions: getRandomSequence(irregular, count, difficultLevel),
             active: 1,
-            answers: []
+            translation: addTranslation,
+            answers: [],
+            difficultLevel: difficultLevel
         }
         setQuiz(newQuiz)
         localStorage.setItem('data', JSON.stringify(newQuiz))

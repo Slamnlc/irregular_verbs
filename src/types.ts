@@ -1,4 +1,5 @@
 import {irregular} from "./data";
+import React from "react";
 
 export type QuizType = "translation" | "first-second" | "first-third" | "second-first" | "second-third" | "third-first"
     | "third-second" | "all"
@@ -9,27 +10,43 @@ export interface QuizData {
     type?: QuizType
     questions?: { [key: keyof typeof irregular]: irregularLine }
     answers?: UserAnswer[]
-    correctCount?: number
-    failCount?: number
     active?: number
+    translation?: boolean
+    difficultLevel?: DifficultLevels
 }
 
 export interface QuizProps {
     quiz?: QuizData
     updateQuiz?: (key: keyof QuizData, value: any) => void
-    createNewQuiz?: (type: QuizType, count: number) => void
+    createNewQuiz?: (type: QuizType, count: number, addTranslation: boolean, difficultLevel: DifficultLevels) => void
 }
 
 export interface irregularLine {
     second: string[]
     third: string[]
-    translation: string[]
+    translation: string[],
+    level: DifficultLevels
 }
 
 export interface UserAnswer {
     answer: string
     result: boolean
     correct: string | string[] | string[][]
+}
+
+export interface LogoProps {
+    width: number
+    height: number
+    onClick?: (event: React.MouseEvent) => void
+    fill?: string
+}
+
+export enum DifficultLevels {
+    Elementary,
+    PreIntermediate,
+    Intermediate,
+    UpperIntermediate,
+    OldFashion
 }
 
 export const quizTypeData = {
@@ -41,4 +58,13 @@ export const quizTypeData = {
     "third-second": "Past Participle (III) to Infinitive",
     "all": "Infinitive to Past Simple (II) + Past Participle (III)",
     "translation": "Translation"
+}
+
+
+export const difficultLevels = {
+    0: "Elementary",
+    1: "Pre Intermediate",
+    2: "Intermediate",
+    3: "Upper Intermediate",
+    4: "Old fashion / Formal"
 }

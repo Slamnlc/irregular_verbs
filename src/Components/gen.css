@@ -1,7 +1,7 @@
 .quiz-params {
     height: 100%;
     width: 100%;
-    max-width: 40%;
+    max-width: 80%;
     padding: 15px;
     margin: auto;
     display: grid;
@@ -10,12 +10,14 @@
 }
 
 .start-btn {
-    width: 80%;
+    width: 60%;
+    padding: 1.2rem;
+    font-size: 16px;
     border-radius: 5px;
 }
 
 .start-btn-div {
-    margin-top: 20px
+    margin-top: 30px
 }
 
 .centralize-text {
@@ -37,7 +39,7 @@
     border-radius: 10px;
     height: 100%;
     width: 100%;
-    max-width: 40%;
+    max-width: 60%;
     padding: 15px;
     margin: auto;
     display: grid;
@@ -101,7 +103,7 @@
 }
 
 .margin-top_30 {
-    margin-top: 30px;
+    margin-top: 30px!important;
 }
 
 .margin-top_15 {
@@ -115,6 +117,10 @@
 .table-div {
     margin: 3% 5%;
     text-align: center;
+}
+
+.table-div td {
+    vertical-align: middle;
 }
 
 .up-btn {
@@ -143,11 +149,57 @@
     pointer-events: all;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-div {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    font-size: 20px;
+    gap: 5px;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-incorrect {
+    display: flex;
+    gap: 10px;
+}
+
+.result-incorrect span:nth-of-type(2n) {
+    font-weight: bold;
+}
+
+.flex {
+    display: flex;
+    min-height: 80vh;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.no-select {
+    user-select: none;
+}
+
 @media screen and (max-width: 480px) {
     .question-card-wrap {
         margin: unset;
         max-width: 100vw;
         height: auto;
+    }
+
+    .question-card {
+        max-width: unset;
     }
 
     .start-btn {
@@ -156,7 +208,43 @@
     }
 
     .body-content {
-        min-height: 50vh;
+        min-height: 65vh;
+    }
+
+    .flex {
+        min-height: 65vh;
+    }
+
+    .header-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        height: 50%;
+    }
+
+    .header {
+        width: 100%;
+        gap: 10px
+    }
+
+    .quiz-params {
+        max-width: unset;
+        margin: unset;
+    }
+
+    .result-incorrect {
+        flex-wrap: wrap;
+        gap: 0 10px;
+    }
+
+    .results-div {
+        margin: unset;
+    }
+
+    .result {
+        width: 100%;
+        justify-content: unset;
     }
 
 }

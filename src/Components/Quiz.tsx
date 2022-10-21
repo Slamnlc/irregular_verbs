@@ -2,7 +2,7 @@ import React, {createRef, FC, useEffect} from 'react';
 import {QuizProps, quizTypeData} from "../types";
 import {useNavigate} from "react-router-dom";
 import {Button, Form} from "react-bootstrap";
-import {getCorrectAnswer, getQuestion, verifyAnswer} from "../utils";
+import {genDictionaryUrl, getCorrectAnswer, getQuestion, scrollTo, verifyAnswer} from "../utils";
 import ProgressBar from "./ProgressBar";
 import {toast} from "react-toastify";
 
@@ -13,6 +13,12 @@ const Quiz: FC<QuizProps> = ({quiz, updateQuiz}) => {
 
     const keys = (Object.keys(quiz!).length !== 0) ? Object.keys(quiz!.questions!) : []
     const activeKey = keys[quiz!.active! - 1];
+    const small = quiz?.type === 'all'
+        ? <small id="allOption" className="form-text text-muted">
+            Specify by comma
+        </small>
+        : <></>
+    const translation = quiz?.translation ? `(${quiz.questions![activeKey].translation[0]})` : ''
 
     useEffect(() => {
         if (Object.keys(quiz!).length === 0) {
@@ -60,25 +66,32 @@ const Quiz: FC<QuizProps> = ({quiz, updateQuiz}) => {
     }
 
     return (
-        // <div className="question-card-wrap">
-            <main className="question-card">
+        <div className="flex">
+            <main className="quiz-params">
                 <h3 className="margin-bottom-30">{quizTypeData[quiz?.type!]}</h3>
                 <ProgressBar quiz={quiz!}/>
-                <Form id="login-form" action="" onSubmit={onClick} className="margin-top_30">
-                    <h2 className="h3 mb-3 fw-normal">{getQuestion(activeKey, quiz?.type!)}</h2>
-                    <div className="form-floating">
+                <div style={{marginTop: "20px"}}>
+                    <a href={genDictionaryUrl(activeKey)} target="_blank" rel="noreferrer">Oxford dictionary</a>
+                </div>
+                <Form id="quiz-form" action="" onSubmit={onClick} className="margin-top_30">
+                    <h2 className="h3 mb-3 fw-normal no-select">{getQuestion(activeKey, quiz?.type!)} {translation}</h2>
+                    <div className="form-floating flex-center flex-column">
                         <input
                             id="input-question"
                             ref={ref}
                             className="form-control centralize-text"
+                            aria-describedby="allOption"
                             defaultValue=""
                             type="text"
+                            onClick={() => scrollTo('#root')}
                             required
                             autoFocus
                             autoComplete="off"
                             spellCheck="false"
                             autoCorrect="off"
+                            style={{width: "70%"}}
                         />
+                        {small}
                     </div>
                     <div className="start-btn-div">
                         <Button id="submit" type="submit" className="start-btn">
@@ -87,7 +100,7 @@ const Quiz: FC<QuizProps> = ({quiz, updateQuiz}) => {
                     </div>
                 </Form>
             </main>
-        // </div>
+        </div>
     );
 };
 
