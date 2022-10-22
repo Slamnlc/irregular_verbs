@@ -1,5 +1,6 @@
-import {QuizData, QuizType, UserAnswer} from "./types";
+import {QuizType, UserAnswer} from "./types";
 import {irregular} from "./data";
+import {QuizClass} from "./quizClass";
 
 export function makeId(length: number = 10) {
     let result = '';
@@ -19,11 +20,16 @@ export function getRandomSequence(obj: object, count: number, maxDifficult: numb
         const keyIndex = Math.floor(Math.random() * keys.length) + 1;
         // @ts-ignore
         if (Object.keys(arr).indexOf(keys[keyIndex]) === -1) {
-            // @ts-ignore
-            if (obj[keys[keyIndex]].level <= maxDifficult) {
+            try {
                 // @ts-ignore
-                arr[keys[keyIndex]] = obj[keys[keyIndex]]
+                if (obj[keys[keyIndex]].level <= maxDifficult) {
+                    // @ts-ignore
+                    arr[keys[keyIndex]] = obj[keys[keyIndex]]
+                }
+            } catch {
+
             }
+
 
         }
     }
@@ -31,10 +37,10 @@ export function getRandomSequence(obj: object, count: number, maxDifficult: numb
 }
 
 
-export function getQuiz(): QuizData | null {
+export function getQuiz(): QuizClass | null {
     let quiz: any = localStorage.getItem('data')
     if (quiz) {
-        quiz = JSON.parse(quiz) as QuizData
+        quiz = new QuizClass(JSON.parse(quiz))
     }
     return quiz
 }

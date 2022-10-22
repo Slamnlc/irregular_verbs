@@ -32,7 +32,7 @@ export const irregular: { [key: string]: irregularLine } = {
         level: DifficultLevels.OldFashion
     },
     be: {
-        second: ['was,were'],
+        second: ['was', 'were'],
         third: ['been'],
         translation: ['бути', 'існувати'],
         level: DifficultLevels.Elementary

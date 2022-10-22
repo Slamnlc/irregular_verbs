@@ -1,8 +1,8 @@
 import React, {createRef, useEffect, useState} from 'react';
 import {Table} from "react-bootstrap";
-import {irregular} from "../data";
-import {scrollTo} from "../utils";
-import {difficultLevels} from "../types";
+import {irregular} from "../Utils/data";
+import {scrollTo} from "../Utils/utils";
+import {difficultLevels} from "../Utils/types";
 
 const VerbsTable = () => {
     const table = createRef<HTMLTableElement>();

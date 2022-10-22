@@ -1,6 +1,6 @@
 import React, {FC, Fragment} from 'react';
-import {getCircleColor, isMobile, splitArray} from "../utils";
-import {QuizData} from "../types";
+import {getCircleColor, isMobile, splitArray} from "../Utils/utils";
+import {QuizData} from "../Utils/types";
 
 interface ProgressBarProps {
     quiz: QuizData
@@ -8,7 +8,7 @@ interface ProgressBarProps {
 
 const ProgressBar: FC<ProgressBarProps> = ({quiz}) => {
     const chunk = isMobile() ? 5: 10
-    const arr = splitArray(Object.keys(quiz.questions!), chunk);
+    const arr = (quiz) ? splitArray(Object.keys(quiz.questions!), chunk) : []
     let glIndex = 0
 
     return (

@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import {QuizType, UserAnswer} from "../types";
-import TickIcon from "./TickIcon";
-import CrossIcon from "./CrossIcon";
-import {convertCorrectToString} from "../utils";
+import {QuizType, UserAnswer} from "../Utils/types";
+import TickIcon from "../Icons/TickIcon";
+import CrossIcon from "../Icons/CrossIcon";
+import {convertCorrectToString} from "../Utils/utils";
 
 interface ResultProps {
     item: UserAnswer

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {LogoProps} from "../types";
+import {LogoProps} from "../Utils/types";
 
 
 const ReactLogo: FC<LogoProps> = ({width, height, onClick}) => {

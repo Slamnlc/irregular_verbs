@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import {irregular} from "../data";
-import {QuizType} from "../types";
+import {irregular} from "../Utils/data";
+import {QuizType} from "../Utils/types";
 
 interface QuestionCardProps {
     question: keyof typeof irregular
@@ -10,7 +10,7 @@ interface QuestionCardProps {
 const QuestionCard: FC<QuestionCardProps> = ({question, type}) => {
     return (
         <div>
-            
+
         </div>
     );
 };

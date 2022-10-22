@@ -110,6 +110,10 @@
     margin-top: 15px;
 }
 
+.margin-top-20 {
+    margin-top: 20px;
+}
+
 .margin-bottom-30 {
     margin-bottom: 30px;
 }
@@ -189,6 +193,14 @@
 
 .no-select {
     user-select: none;
+}
+
+.pass-rate-div {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 480px) {

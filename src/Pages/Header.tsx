@@ -1,6 +1,6 @@
 import React from 'react';
-import {getQuiz} from "../utils";
-import HeaderLink from "./HeaderLink";
+import {getQuiz} from "../Utils/utils";
+import HeaderLink from "../Components/HeaderLink";
 import {useLocation} from "react-router-dom";
 
 const Header = () => {

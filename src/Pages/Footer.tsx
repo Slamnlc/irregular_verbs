@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactLogo from "./ReactLogo";
-import {openInNewTab} from "../utils";
+import ReactLogo from "../Icons/ReactLogo";
+import {openInNewTab} from "../Utils/utils";
 
 const Footer = () => {
 

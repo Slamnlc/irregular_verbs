@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import '../App.css'
-import QuizParams from "./QuizParams";
-import {QuizProps} from "../types";
+import {QuizProps} from "../Utils/types";
+import QuizParams from "./QuizParams"
 
 
 const MainPage: FC<QuizProps> = ({createNewQuiz}) => {

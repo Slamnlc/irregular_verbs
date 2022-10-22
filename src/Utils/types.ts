@@ -1,5 +1,6 @@
 import {irregular} from "./data";
 import React from "react";
+import {QuizClass} from "./quizClass";
 
 export type QuizType = "translation" | "first-second" | "first-third" | "second-first" | "second-third" | "third-first"
     | "third-second" | "all"
@@ -16,9 +17,10 @@ export interface QuizData {
 }
 
 export interface QuizProps {
-    quiz?: QuizData
+    quiz?: QuizClass | null
     updateQuiz?: (key: keyof QuizData, value: any) => void
     createNewQuiz?: (type: QuizType, count: number, addTranslation: boolean, difficultLevel: DifficultLevels) => void
+    validateUserAnswer?: (userAnswer: string) => void
 }
 
 export interface irregularLine {
