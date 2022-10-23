@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/irregular_verbs/static/css/main.b7b8cbd6.css",
-    "main.js": "/irregular_verbs/static/js/main.0a6d4a38.js",
+    "main.css": "/irregular_verbs/static/css/main.dd664eaa.css",
+    "main.js": "/irregular_verbs/static/js/main.a5c172c8.js",
     "static/media/fa-solid-900.svg": "/irregular_verbs/static/media/fa-solid-900.7a8b4f130182d19a2d7c.svg",
     "static/media/fa-brands-400.svg": "/irregular_verbs/static/media/fa-brands-400.2f517e09eb2ca6650ff5.svg",
     "static/media/fa-solid-900.eot": "/irregular_verbs/static/media/fa-solid-900.9bbb245e67a133f6e486.eot",
@@ -20,11 +20,11 @@
     "index.html": "/irregular_verbs/index.html",
     "static/media/arrow_left.svg": "/irregular_verbs/static/media/arrow_left.db6e2d88c7c35a775ce4.svg",
     "static/media/arrow_right.svg": "/irregular_verbs/static/media/arrow_right.f7c6ac6d310d3b82f0a0.svg",
-    "main.b7b8cbd6.css.map": "/irregular_verbs/static/css/main.b7b8cbd6.css.map",
-    "main.0a6d4a38.js.map": "/irregular_verbs/static/js/main.0a6d4a38.js.map"
+    "main.dd664eaa.css.map": "/irregular_verbs/static/css/main.dd664eaa.css.map",
+    "main.a5c172c8.js.map": "/irregular_verbs/static/js/main.a5c172c8.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7b8cbd6.css",
-    "static/js/main.0a6d4a38.js"
+    "static/css/main.dd664eaa.css",
+    "static/js/main.a5c172c8.js"
   ]
 }
