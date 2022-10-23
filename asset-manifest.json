@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/irregular_verbs/static/css/main.dd664eaa.css",
-    "main.js": "/irregular_verbs/static/js/main.a5c172c8.js",
+    "main.js": "/irregular_verbs/static/js/main.f5efe58c.js",
     "static/media/fa-solid-900.svg": "/irregular_verbs/static/media/fa-solid-900.7a8b4f130182d19a2d7c.svg",
     "static/media/fa-brands-400.svg": "/irregular_verbs/static/media/fa-brands-400.2f517e09eb2ca6650ff5.svg",
     "static/media/fa-solid-900.eot": "/irregular_verbs/static/media/fa-solid-900.9bbb245e67a133f6e486.eot",
@@ -13,6 +13,7 @@
     "static/media/fa-brands-400.woff": "/irregular_verbs/static/media/fa-brands-400.2285773e6b4b172f07d9.woff",
     "static/media/fa-solid-900.woff2": "/irregular_verbs/static/media/fa-solid-900.1551f4f60c37af51121f.woff2",
     "static/media/fa-brands-400.woff2": "/irregular_verbs/static/media/fa-brands-400.d878b0a6a1144760244f.woff2",
+    "service-worker.js": "/irregular_verbs/service-worker.js",
     "static/media/fa-regular-400.eot": "/irregular_verbs/static/media/fa-regular-400.77206a6bb316fa0aded5.eot",
     "static/media/fa-regular-400.ttf": "/irregular_verbs/static/media/fa-regular-400.491974d108fe4002b2aa.ttf",
     "static/media/fa-regular-400.woff": "/irregular_verbs/static/media/fa-regular-400.bb58e57c48a3e911f15f.woff",
@@ -21,10 +22,10 @@
     "static/media/arrow_left.svg": "/irregular_verbs/static/media/arrow_left.db6e2d88c7c35a775ce4.svg",
     "static/media/arrow_right.svg": "/irregular_verbs/static/media/arrow_right.f7c6ac6d310d3b82f0a0.svg",
     "main.dd664eaa.css.map": "/irregular_verbs/static/css/main.dd664eaa.css.map",
-    "main.a5c172c8.js.map": "/irregular_verbs/static/js/main.a5c172c8.js.map"
+    "main.f5efe58c.js.map": "/irregular_verbs/static/js/main.f5efe58c.js.map"
   },
   "entrypoints": [
     "static/css/main.dd664eaa.css",
-    "static/js/main.a5c172c8.js"
+    "static/js/main.f5efe58c.js"
   ]
 }
