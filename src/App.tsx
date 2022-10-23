@@ -8,7 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 import Service from "./Components/Service";
 import Quiz from "./Pages/Quiz";
-import {DifficultLevels, QuizData, QuizType} from "./Utils/types";
+import {DifficultLevels, QuizType} from "./Utils/types";
 import {getQuiz} from "./Utils/utils";
 import ResultPage from "./Pages/ResultPage";
 import VerbsTable from "./Pages/VerbsTable";
@@ -20,10 +20,6 @@ function App() {
     const oldQuiz = getQuiz()
     const data = (oldQuiz) ? oldQuiz : null
     const [quiz, setQuiz] = useState<QuizClass | null>(data)
-
-    const updateQuiz = (key: keyof QuizData, value: any) => {
-        setQuiz((quiz as QuizClass).updateQuiz(key, value))
-    }
 
     const createNewQuiz = (type: QuizType, count: number,
                            addTranslation: boolean, minDifficult: DifficultLevels, maxDifficult: DifficultLevels) => {
@@ -41,7 +37,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Service/>}>
                 <Route path="/" element={<MainPage createNewQuiz={createNewQuiz}/>}/>
-                <Route path="/quiz" element={<Quiz quiz={quiz} updateQuiz={updateQuiz}
+                <Route path="/quiz" element={<Quiz quiz={quiz}
                                                    validateUserAnswer={validateUserAnswer}/>}/>
                 <Route path="/result" element={<ResultPage/>}/>
                 <Route path="/table" element={<VerbsTable/>}/>

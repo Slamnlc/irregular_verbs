@@ -9,8 +9,17 @@ interface HeaderLinkProps {
 const HeaderLink: FC<HeaderLinkProps> = ({text, urlLink}) => {
     const navigate = useNavigate();
 
+    const openUrl = () => {
+        document.querySelector('.body-content')!.classList.remove('show')
+        setTimeout(() => {
+            navigate(urlLink)
+            document.querySelector('.body-content')!.classList.add('show')
+        }, 600)
+
+    }
+
     return (
-        <div className="header-link" onClick={() => navigate(urlLink)}>{text}</div>
+        <div className="header-link" onClick={openUrl}>{text}</div>
     );
 };
 

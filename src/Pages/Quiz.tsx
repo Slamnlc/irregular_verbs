@@ -9,7 +9,7 @@ import CustomForm from "../Components/CustomForm";
 import OxfordDictionaryLink from "../Components/OxfordDictionaryLink";
 
 
-const Quiz: FC<QuizProps> = ({quiz, updateQuiz, validateUserAnswer}) => {
+const Quiz: FC<QuizProps> = ({quiz, validateUserAnswer}) => {
     const navigate = useNavigate();
     const ref = createRef<HTMLInputElement>();
 
@@ -41,7 +41,7 @@ const Quiz: FC<QuizProps> = ({quiz, updateQuiz, validateUserAnswer}) => {
 
     }
 
-    return (
+    return activeKey ? (
         <CustomForm id="quiz-form" onSubmit={onClick}>
             <h3 className="margin-bottom-30">{quizTypeData[quiz?.type!]}</h3>
             <ProgressBar quiz={quiz!}/>
@@ -53,11 +53,12 @@ const Quiz: FC<QuizProps> = ({quiz, updateQuiz, validateUserAnswer}) => {
                       style={{width: "70%"}} description={description} required autoFocus/>
             <div className="start-btn-div">
                 <Button id="submit" type="submit" className="start-btn">
-                    {quiz ? quiz?.active === quiz!.count! - 1 ? "Finish" : "Confirm": <></>}
+                    {quiz ? quiz?.active === quiz!.count! ? "Finish" : "Confirm": <></>}
                 </Button>
             </div>
         </CustomForm>
-    );
+    )
+        : <></>;
 };
 
 export default Quiz;

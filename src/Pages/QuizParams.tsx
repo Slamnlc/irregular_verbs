@@ -47,6 +47,7 @@ const QuizParams: FC<QuizProps> = ({createNewQuiz}) => {
                 label="Number of questions"
                 placeholder="Insert number of words in quiz. Maximum is 20"
                 defaultValue={10}
+                inputMode="numeric"
                 type="number" max={20} min={1}
                 required
             />

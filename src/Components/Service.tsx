@@ -8,7 +8,7 @@ const Service = () => {
     return (
         <>
             <Header/>
-            <div className="body-content">
+            <div className="body-content show">
                 <Outlet/>
             </div>
             <Footer/>

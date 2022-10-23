@@ -26,6 +26,13 @@ html, body, #root {
 
 .body-content {
     min-height: 75vh;
+    transition: all .5s;
+    opacity: 0;
+}
+
+
+.body-content.show {
+    opacity: 1;
 }
 
 .footer {

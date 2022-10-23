@@ -2,7 +2,7 @@ import {difficultLevels, QuizType, UserAnswer} from "./types";
 import {irregular} from "./data";
 import {QuizClass} from "./quizClass";
 
-export function makeId(length: number = 10) {
+export function makeId(length: number = 10): string {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     const charactersLength = characters.length;
@@ -43,49 +43,6 @@ export function getQuiz(): QuizClass | null {
     return quiz
 }
 
-
-export function verifyAnswer(answer: string | string[], question: keyof typeof irregular, type: QuizType): boolean {
-    const correct = getCorrectAnswer(question, type)
-    switch (type) {
-        case "first-second":
-        case "first-third":
-        case "second-third":
-        case "third-second":
-        case "translation":
-            // @ts-ignore
-            return correct.includes(answer.toString())
-        case "all":
-            const result = answer.toString().toLowerCase().split(',')
-            if (result.length !== 2) {
-                return false
-            }
-            return correct[0].includes(result[0].replaceAll(' ', '')) &&
-                correct[1].includes(result[1].replaceAll(' ', ''))
-        case "third-first":
-        case "second-first":
-            return answer === correct
-    }
-}
-
-export function getCorrectAnswer(question: keyof typeof irregular, type: QuizType): string[] | string | string[][] {
-    const key = irregular[question];
-    switch (type) {
-        case "first-second":
-        case "third-second":
-            return key.second
-        case "first-third":
-        case "second-third":
-            return key.third
-        case "translation":
-            return prepareAnswer(key.translation)
-        case "all":
-            return [key.second, key.third]
-        case "third-first":
-        case "second-first":
-            return question.toString()
-    }
-}
-
 export function convertCorrectToString(correct: string[] | string | string[][], type: QuizType): string {
     switch (type) {
         case "first-second":
@@ -120,10 +77,10 @@ export function getQuestion(key: keyof typeof irregular, type: QuizType) {
             return key
         case "second-first":
         case "second-third":
-            return irregular[key].second
+            return irregular[key].second.join(', ')
         case "third-first":
         case "third-second":
-            return irregular[key].third
+            return irregular[key].third.join(', ')
     }
 }
 
