@@ -102,7 +102,7 @@ export function convertCorrectToString(correct: string[] | string | string[][], 
             return `${correct[0].join(', ')}, ${correct[0].join(',')}`
         case "translation":
             // @ts-ignore
-            return prepareAnswer(correct)
+            return correct.join(', ')
     }
 }
 
