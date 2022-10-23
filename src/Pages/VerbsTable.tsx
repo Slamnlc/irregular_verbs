@@ -1,8 +1,9 @@
 import React, {createRef, useEffect, useState} from 'react';
 import {Table} from "react-bootstrap";
 import {irregular} from "../Utils/data";
-import {scrollTo} from "../Utils/utils";
+import {genDictionaryUrl, openInNewTab, scrollTo} from "../Utils/utils";
 import {difficultLevels} from "../Utils/types";
+import BoxArrowUpIcon from "../Icons/BoxArrowUpIcon";
 
 const VerbsTable = () => {
     const table = createRef<HTMLTableElement>();
@@ -38,8 +39,9 @@ const VerbsTable = () => {
                     <th>Infinitive</th>
                     <th>Past Simple</th>
                     <th>Past Participle</th>
-                    <th>Level</th>
+                    <th className="mobile-hide">Level</th>
                     <th>Переклад</th>
+                    <th>Oxford link</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,8 +52,11 @@ const VerbsTable = () => {
                             <td>{key}</td>
                             <td>{value.second.join(', ')}</td>
                             <td>{value.third.join(', ')}</td>
-                            <td>{difficultLevels[value.level]}</td>
+                            <td className="mobile-hide">{difficultLevels[value.level]}</td>
                             <td>{value.translation.join(', ')}</td>
+                            <td className="pointer mobile-hide" onClick={() => {openInNewTab(genDictionaryUrl(key))}}>
+                                <BoxArrowUpIcon height={24} width={24} fill="blue"/>
+                            </td>
                         </tr>
                     })
                 }

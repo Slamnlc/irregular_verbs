@@ -1,4 +1,4 @@
-import {QuizType, UserAnswer} from "./types";
+import {difficultLevels, QuizType, UserAnswer} from "./types";
 import {irregular} from "./data";
 import {QuizClass} from "./quizClass";
 
@@ -13,7 +13,7 @@ export function makeId(length: number = 10) {
     return result;
 }
 
-export function getRandomSequence(obj: object, count: number, maxDifficult: number) {
+export function getRandomSequence(obj: object, count: number, minDifficult: number, maxDifficult: number) {
     const arr = {};
     const keys = Object.keys(obj);
     while (Object.keys(arr).length < count) {
@@ -22,15 +22,13 @@ export function getRandomSequence(obj: object, count: number, maxDifficult: numb
         if (Object.keys(arr).indexOf(keys[keyIndex]) === -1) {
             try {
                 // @ts-ignore
-                if (obj[keys[keyIndex]].level <= maxDifficult) {
+                if (obj[keys[keyIndex]].level <= maxDifficult && obj[keys[keyIndex]].level >= minDifficult) {
                     // @ts-ignore
                     arr[keys[keyIndex]] = obj[keys[keyIndex]]
                 }
             } catch {
 
             }
-
-
         }
     }
     return arr
@@ -165,4 +163,12 @@ export function scrollTo(querySelector: string) {
 
 export function genDictionaryUrl(text: string): string {
     return `https://www.oxfordlearnersdictionaries.com/definition/english/${text}_1?q=${text}`
+}
+
+export function filterDifficult(minDifficult: string) {
+    return Object.keys(difficultLevels).filter(el => +el >= +minDifficult).reduce(function (obj, x) {
+        // @ts-ignore
+        obj[x] = difficultLevels[x]
+        return obj;
+    }, {})
 }

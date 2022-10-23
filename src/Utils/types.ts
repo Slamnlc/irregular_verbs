@@ -13,13 +13,15 @@ export interface QuizData {
     answers?: UserAnswer[]
     active?: number
     translation?: boolean
-    difficultLevel?: DifficultLevels
+    minDifficult?: DifficultLevels
+    maxDifficult?: DifficultLevels
 }
 
 export interface QuizProps {
     quiz?: QuizClass | null
     updateQuiz?: (key: keyof QuizData, value: any) => void
-    createNewQuiz?: (type: QuizType, count: number, addTranslation: boolean, difficultLevel: DifficultLevels) => void
+    createNewQuiz?: (type: QuizType, count: number, addTranslation: boolean, minDifficult: DifficultLevels,
+                     maxDifficult: DifficultLevels) => void
     validateUserAnswer?: (userAnswer: string) => void
 }
 

@@ -7,24 +7,32 @@ import DivSelect from "../Components/DivSelect";
 import DivInput from "../Components/DivInput";
 import CustomForm from "../Components/CustomForm";
 import DivCheckbox from "../Components/DivCheckbox";
+import {filterDifficult} from "../Utils/utils";
 
 const QuizParams: FC<QuizProps> = ({createNewQuiz}) => {
 
     const wordNumber = createRef<HTMLInputElement>();
     const quizType = createRef<HTMLSelectElement>();
     const addTranslation = createRef<HTMLInputElement>();
-    const difficultLevel = createRef<HTMLSelectElement>();
+    const minDifficultLevel = createRef<HTMLSelectElement>();
+    const maxDifficultLevel = createRef<HTMLSelectElement>();
     const navigate = useNavigate();
     const [translation, setTranslation] = useState<boolean>(false);
+    const [minDifficult, setMinDifficult] = useState<string>("2")
+
+    const changeMinDifficult = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setMinDifficult(event.target.value)
+    }
 
     const onClick = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const questionCount = +wordNumber.current?.value!
-        const difficult: DifficultLevels = +difficultLevel.current?.value!
-        createNewQuiz!(quizType.current?.value as QuizType, questionCount, addTranslation.current?.checked!, difficult)
+        const minDifficult: DifficultLevels = +minDifficultLevel.current?.value!
+        const maxDifficult: DifficultLevels = +maxDifficultLevel.current?.value!
+        createNewQuiz!(quizType.current?.value as QuizType, questionCount, addTranslation.current?.checked!,
+            minDifficult, maxDifficult)
         navigate('/quiz')
     }
-
     const onChange = () => {
         setTranslation(quizType.current?.value === 'translation')
     }
@@ -42,8 +50,13 @@ const QuizParams: FC<QuizProps> = ({createNewQuiz}) => {
                 type="number" max={20} min={1}
                 required
             />
-            <DivSelect id="difficultLevel" label="Select difficult type"
-                       optionObject={difficultLevels} refer={difficultLevel}/>
+            <div className="difficult-div">
+                <DivSelect id="minDifficultLevel" label="Minimum difficult type"
+                           optionObject={difficultLevels} refer={minDifficultLevel}
+                           onChange={changeMinDifficult}/>
+                <DivSelect id="maxDifficultLevel" label="Maximum difficult type"
+                           optionObject={filterDifficult(minDifficult)} refer={maxDifficultLevel}/>
+            </div>
             <DivSelect id="quizType" label="Select quiz type"
                        onChange={onChange} optionObject={quizTypeData}
                        refer={quizType}/>

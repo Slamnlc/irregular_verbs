@@ -26,8 +26,8 @@ function App() {
     }
 
     const createNewQuiz = (type: QuizType, count: number,
-                           addTranslation: boolean, difficultLevel: DifficultLevels) => {
-        const newQuiz = QuizClass.createNewQuiz(type, count, addTranslation, difficultLevel)
+                           addTranslation: boolean, minDifficult: DifficultLevels, maxDifficult: DifficultLevels) => {
+        const newQuiz = QuizClass.createNewQuiz(type, count, addTranslation, minDifficult, maxDifficult)
         setQuiz(newQuiz)
     }
 

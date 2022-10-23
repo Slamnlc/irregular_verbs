@@ -10,7 +10,8 @@ export class QuizClass implements QuizData {
     answers: UserAnswer[]
     active: number
     translation: boolean
-    difficultLevel: DifficultLevels
+    minDifficult: DifficultLevels
+    maxDifficult: DifficultLevels
     keys: string[]
 
     constructor(data: QuizData) {
@@ -21,7 +22,8 @@ export class QuizClass implements QuizData {
         this.answers = data.answers!
         this.active = data.active!
         this.translation = data.translation!
-        this.difficultLevel = data.difficultLevel!
+        this.minDifficult = data.minDifficult!
+        this.maxDifficult = data.maxDifficult!
         this.keys = Object.keys(this.questions!)
 
     }
@@ -113,16 +115,17 @@ export class QuizClass implements QuizData {
     }
 
     static createNewQuiz(type: QuizType, count: number,
-                         addTranslation: boolean, difficultLevel: DifficultLevels) {
+                         addTranslation: boolean, minDifficult: DifficultLevels, maxDifficult: DifficultLevels) {
         const quiz: QuizData = {
             id: makeId(),
             type: type,
             count: count,
-            questions: getRandomSequence(irregular, count, difficultLevel),
+            questions: getRandomSequence(irregular, count, minDifficult, maxDifficult),
             active: 1,
             translation: addTranslation,
             answers: [],
-            difficultLevel: difficultLevel
+            minDifficult: minDifficult,
+            maxDifficult: maxDifficult
         }
         localStorage.setItem('data', JSON.stringify(quiz))
         return new QuizClass(quiz)
