@@ -70,5 +70,5 @@ export const difficultLevels = {
     1: "Pre Intermediate",
     2: "Intermediate",
     3: "Upper Intermediate",
-    4: "Old fashion / Formal"
+    4: "Old fashioned / Formal"
 }
