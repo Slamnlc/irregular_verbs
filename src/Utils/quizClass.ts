@@ -1,6 +1,7 @@
 import {DifficultLevels, irregularLine, QuizData, QuizType, UserAnswer} from "./types";
 import {getRandomSequence, makeId, prepareAnswer} from "./utils";
 import {irregular} from "./data";
+import {Haptics} from "@capacitor/haptics";
 
 export class QuizClass implements QuizData {
     id: string
@@ -97,7 +98,8 @@ export class QuizClass implements QuizData {
         return new QuizClass(this)
     }
 
-    showError(content: any, toast: any) {
+    async showError(content: any, toast: any) {
+        await Haptics.vibrate()
         switch (typeof content) {
             case "string":
                 toast.error(content);

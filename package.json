@@ -4,6 +4,10 @@
   "homepage": "https://slamnlc.github.io/irregular_verbs",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^4.4.0",
+    "@capacitor/core": "^4.4.0",
+    "@capacitor/haptics": "^4.0.1",
+    "@capacitor/ios": "^4.4.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -20,7 +24,18 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.8",
     "typescript": "^4.8.4",
-    "web-vitals": "^2.1.4"
+    "workbox-background-sync": "^6.5.4",
+    "workbox-broadcast-update": "^6.5.4",
+    "workbox-cacheable-response": "^6.5.4",
+    "workbox-core": "^6.5.4",
+    "workbox-expiration": "^6.5.4",
+    "workbox-google-analytics": "^6.5.4",
+    "workbox-navigation-preload": "^6.5.4",
+    "workbox-precaching": "^6.5.4",
+    "workbox-range-requests": "^6.5.4",
+    "workbox-routing": "^6.5.4",
+    "workbox-strategies": "^6.5.4",
+    "workbox-streams": "^6.5.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.4.0",
     "gh-pages": "^4.0.0"
   }
 }

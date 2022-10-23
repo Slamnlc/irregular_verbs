@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import {Flip, ToastContainer} from "react-toastify";
 
 const RouterTag = process.env.NODE_ENV === 'development' ? BrowserRouter : HashRouter
@@ -24,3 +25,5 @@ root.render(
         />
     </RouterTag>
 );
+
+serviceWorkerRegistration.register();

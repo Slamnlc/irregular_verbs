@@ -41,7 +41,7 @@ const VerbsTable = () => {
                     <th>Past Participle</th>
                     <th className="mobile-hide">Level</th>
                     <th>Переклад</th>
-                    <th>Oxford link</th>
+                    <th className="mobile-hide">Oxford link</th>
                 </tr>
                 </thead>
                 <tbody>
